@@ -1,7 +1,8 @@
 from db.repository.base import BaseRepository
 from db.models.university import University
 from sqlalchemy import select
-from db.models.address import Address
+from api.response.university import ResponseUniversity
+from api.request.university import RequestUniversity
 
 
 class UniversityRepository(BaseRepository):
@@ -10,14 +11,17 @@ class UniversityRepository(BaseRepository):
             self,
             limit: int,
             offset: int
-    ) -> list[tuple[University, str]]:
-        query_1 = (
-            select(University, Address.city)
-            .select_from(University)
-            .join(Address, Address.id == University.address[0], isouter=False)
+    ) -> list[University]:
+        query = (
+            select(University)
             .limit(limit)
             .offset(offset)
-            .distinct()
         )
+        return await self.all_ones(query=query)
 
-        return await self.all(query_1)
+    async def create(
+            self,
+            university: RequestUniversity
+    ) -> None:
+        university_create = University(**university.__dict__)
+        await self.add_model(model=university_create)

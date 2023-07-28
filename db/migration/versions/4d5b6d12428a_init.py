@@ -72,8 +72,8 @@ def upgrade():
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(), nullable=False),
     sa.Column('photos', sa.ARRAY(sa.String()), nullable=True),
-    sa.Column('address', sa.ARRAY(sa.Integer()), nullable=False),
-    sa.Column('speciality', sa.ARRAY(sa.Integer()), nullable=False),
+    sa.Column('address', sa.ARRAY(sa.Integer()), nullable=True),
+    sa.Column('speciality', sa.ARRAY(sa.Integer()), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_university_id'), 'university', ['id'], unique=False)

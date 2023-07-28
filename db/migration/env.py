@@ -11,6 +11,18 @@ from sqlalchemy import pool
 from alembic import context
 
 from database import DATABASE_URL_sync, Base
+from db.models.university import University
+from db.models.address import Address
+from db.models.answer import Answer
+from db.models.exam import Exam
+from db.models.speciality import Speciality
+from db.models.test import Test
+from db.models.type_question import TypeQuestion
+from db.models.user import User
+from db.models.ege import Ege
+from db.models.question import Question
+from db.models.ranked_list import RankedList
+
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

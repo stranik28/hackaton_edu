@@ -41,9 +41,9 @@ class BaseRepository:
             return None
         return result[0]
 
-    async def add_model(self, model) -> None:
+    async def add_model(self, model):
         self._session.add(model)
-        await self._session.flush([model])
+        await self._session.commit()
 
     async def add_model_ignore_exceptions(self, model) -> None:
         try:
