@@ -153,7 +153,7 @@ def add_adresses():
 
 def add_exams():
     for exam_name in exam_names:
-        create_exam(**exam_name)
+        create_exam(name=exam_name)
 
 
 def add_eges(n):

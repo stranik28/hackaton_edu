@@ -10,6 +10,7 @@ from routers.exam import router as exam_router
 from routers.type_question import router as type_question_router
 from routers.answer import router as answer_router
 from routers.question import router as question_router
+from routers.front.nastya import router as front_router
 
 app = FastAPI()
 
@@ -23,3 +24,4 @@ app.include_router(exam_router)
 app.include_router(type_question_router)
 app.include_router(answer_router)
 app.include_router(question_router)
+app.include_router(front_router)

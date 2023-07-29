@@ -28,7 +28,7 @@ def upgrade():
     )
     op.create_index(op.f('ix_address_city'), 'address', ['city'], unique=False)
     op.create_index(op.f('ix_address_id'), 'address', ['id'], unique=False)
-    op.create_index(op.f('ix_address_region'), 'address', ['region'], unique=True)
+    op.create_index(op.f('ix_address_region'), 'address', ['region'], unique=False)
     op.create_table('answer',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('body', sa.String(), nullable=False),
