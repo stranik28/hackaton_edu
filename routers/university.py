@@ -3,9 +3,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.depends.pagination import PagesPaginationParams
-from api.response.university import ResponseUniversity
-from api.response.university import ResponseUniversityTech
-from api.response.university import ResponseUniversityTechFactory
+from api.response.university import ResponseUniversityTech, ResponseUniversityTechFactory
 from api.request.university import RequestUniversity
 from api.response.base import ResponseEmpty
 

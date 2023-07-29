@@ -31,7 +31,7 @@ def upgrade():
     op.create_index(op.f('ix_address_region'), 'address', ['region'], unique=True)
     op.create_table('answer',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(), nullable=False),
+    sa.Column('body', sa.String(), nullable=False),
     sa.Column('correct', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
