@@ -25,3 +25,17 @@ class SpecialityRepository(BaseRepository):
     ) -> None:
         speciality_create = Speciality(**speciality.__dict__)
         await self.add_model(model=speciality_create)
+
+    async def get_landing(
+            self,
+            limit: int,
+            offset: int
+    ):
+        query = (
+            select(Speciality.code, Speciality.name)
+            .group_by(Speciality.code, Speciality.name)
+            .distinct()
+            .limit(limit)
+            .offset(offset)
+        )
+        return await self.all(query=query)

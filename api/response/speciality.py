@@ -8,7 +8,8 @@ class ResponseSpecialityTech(ResponseBase):
     id: int = Field(..., examples=[1])
     name: str = Field(..., examples=['Геология'])
     code: str = Field(..., examples=['05.03.01'])
-    description: Optional[str] = Field(None, examples=['Самая лучшая специальность. Можно копать землю. Или не копать.'])
+    description: Optional[str] = Field(None,
+                                       examples=['Самая лучшая специальность. Можно копать землю. Или не копать.'])
     test: Optional[list[int]] = Field(None, examples=[1, 2, 3])
     exam: list[int] = Field(..., examples=[1, 2, 3])
     budget_place: int = Field(..., examples=[60])
@@ -34,4 +35,23 @@ class ResponseSpecialityTechFactory:
 
     @classmethod
     def from_models(cls, specialities: list[Speciality]) -> list[ResponseSpecialityTech]:
+        return [cls.from_model(speciality=speciality) for speciality in specialities]
+
+
+class ResponseSpecialityLanding(ResponseBase):
+    code: str = Field(..., examples=["01.09.03"])
+    name: str = Field(..., examples=["Прикладная информатика и информатика"])
+
+
+class ResponseSpecialityLandingFactory:
+
+    @staticmethod
+    def from_model(speciality: Speciality) -> ResponseSpecialityLanding:
+        return ResponseSpecialityLanding(
+            code=speciality[0],
+            name=speciality[1]
+        )
+
+    @classmethod
+    def from_models(cls, specialities: list[Speciality]) -> list[ResponseSpecialityLanding]:
         return [cls.from_model(speciality=speciality) for speciality in specialities]

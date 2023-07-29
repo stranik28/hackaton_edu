@@ -3,8 +3,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.depends.pagination import PagesPaginationParams
-from api.response.speciality import ResponseSpecialityTech
-from api.response.speciality import ResponseSpecialityTechFactory
+from api.response.speciality import ResponseSpecialityTech, ResponseSpecialityTechFactory, ResponseSpecialityLanding, ResponseSpecialityLandingFactory
 from api.request.speciality import RequestSpeciality
 from api.response.base import ResponseEmpty
 
@@ -41,3 +40,21 @@ async def create_speciality(
     )
 
     return ResponseEmpty()
+
+
+@router.get("/landing", response_model=list[ResponseSpecialityLanding])
+async def landing(
+        pagination: PagesPaginationParams = Depends(),
+        session: AsyncSession = Depends(get_async_session)
+):
+    landing_spec = await SpecialityManager.get_landing(
+        limit=pagination.limit,
+        offset=pagination.offset,
+        session=session
+    )
+    print(landing_spec)
+    return ResponseSpecialityLandingFactory.from_models(landing_spec)
+
+@router.get('/culculator')
+async def calculator():
+    return "In progress"

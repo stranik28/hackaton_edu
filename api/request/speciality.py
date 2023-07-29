@@ -12,3 +12,4 @@ class RequestSpeciality(RequestBase):
     budget_place: int = Field(..., examples=[60])
     price: int = Field(..., examples=[140000])
     paid_place: int = Field(..., examples=[100])
+

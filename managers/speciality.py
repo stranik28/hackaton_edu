@@ -27,3 +27,14 @@ class SpecialityManager:
         await SpecialityRepository(session).create(
             speciality=speciality
         )
+
+    @staticmethod
+    async def get_landing(
+            session: AsyncSession,
+            limit: int,
+            offset: int
+    ):
+        return await SpecialityRepository(session).get_landing(
+            limit=limit,
+            offset=offset
+        )

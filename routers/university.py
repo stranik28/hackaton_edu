@@ -3,7 +3,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from api.depends.pagination import PagesPaginationParams
-from api.response.university import ResponseUniversityTech, ResponseUniversityTechFactory
+from api.response.university import ResponseUniversityTech, ResponseUniversityTechFactory, ResponseUniversityLanding, \
+    ResponseUniversityLandingFactory
 from api.request.university import RequestUniversity
 from api.response.base import ResponseEmpty
 
@@ -40,3 +41,17 @@ async def create_university(
     )
 
     return ResponseEmpty()
+
+
+@router.get('/landing', response_model=list[ResponseUniversityLanding])
+async def get_landing(
+        pagination: PagesPaginationParams = Depends(),
+        session: AsyncSession = Depends(get_async_session)
+):
+    university: list[University] = await UniversityManager.get_all(
+        limit=pagination.limit,
+        offset=pagination.offset,
+        session=session
+    )
+
+    return ResponseUniversityLandingFactory.from_models(university=university)
