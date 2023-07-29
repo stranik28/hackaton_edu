@@ -35,6 +35,7 @@ async def create_user(
         request: RequestUser,
         session: AsyncSession = Depends(get_async_session)
 ):
+    request.number_of_univers = 0
     await UserManager.create(
         user=request,
         session=session
