@@ -1,4 +1,7 @@
 from fastapi import FastAPI
+from starlette.middleware.cors import CORSMiddleware
+
+from app_bank import app2
 
 from routers.university import router as university_router
 from routers.address import router as address_router
@@ -23,3 +26,14 @@ app.include_router(exam_router)
 app.include_router(type_question_router)
 app.include_router(answer_router)
 app.include_router(question_router)
+
+
+app2.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.mount("/bank", app2)
