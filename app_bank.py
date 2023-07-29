@@ -46,7 +46,7 @@ async def root():
     return {"message": "Secure Hello World"}
 
 
-@app2.get("/get_client_ip/")
-def get_client_ip(request: Request):
-    client_ip = request.client.host
-    return {"client_ip": client_ip}
+@app2.get("/get_internal_ip/")
+def get_internal_ip(request: Request):
+    internal_ip = request.headers.get("X-Forwarded-For")
+    return {"internal_ip": internal_ip}
