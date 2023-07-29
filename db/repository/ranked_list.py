@@ -2,8 +2,8 @@ from db.repository.base import BaseRepository
 from db.models.ranked_list import RankedList
 from sqlalchemy import select
 
-from api.response.rankedlist import ResponseRankedList
-from api.request.rankedlist import RequestRankedList
+from api.response.ranked_list import ResponseRankedList
+from api.request.ranked_list import RequestRankedList
 
 
 class RankedListRepository(BaseRepository):
@@ -22,8 +22,8 @@ class RankedListRepository(BaseRepository):
 
     async def create(
             self,
-            rankedlist: RequestRankedList
+            ranked_list: RequestRankedList
     ) -> None:
-        rankedlist_create = RankedList(**rankedlist.__dict__)
-        await self.add_model(model=rankedlist_create)
+        ranked_list_create = RankedList(**ranked_list.__dict__)
+        await self.add_model(model=ranked_list_create)
         
