@@ -13,7 +13,7 @@ from routers.exam import router as exam_router
 from routers.type_question import router as type_question_router
 from routers.answer import router as answer_router
 from routers.question import router as question_router
-from routers.front.nastya import router as front_router
+from credits.nastya import router as front_router
 
 app = FastAPI()
 

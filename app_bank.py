@@ -1,33 +1,72 @@
-import requests
-import ecdsa
+# app2.py
 import base64
-import json
 
-url = "http://nova-hub.ru:9999/bank/get_client_ip/"  # Replace with the correct URL of your FastAPI server
+from fastapi import FastAPI, HTTPException, Request
 
-# Load the private key for signing (in practice, this should be stored securely)
-with open("private_key.pem", "rb") as f:
-    sk = ecdsa.SigningKey.from_pem(f.read().decode('utf-8'))
+import ecdsa
 
-# Data to be sent (could be any JSON data)
-data = {"message": "This is a secure request"}  # Convert data to a Python dictionary
+app2 = FastAPI(openapi_prefix="/bank")
 
-# Convert data to a JSON string
-data_json = json.dumps(data)
-# Sign the data using the private key
-signature = sk.sign(data_json.encode())  # Encode data as bytes
-# Base64 encode the binary signature
-signature_base64 = base64.b64encode(signature)
 
-# Prepare the request headers to include the signature and user ID (if required)
-headers = {
-    "X-Signature": signature_base64.decode(),  # Decode to convert bytes to a string
-    "X-User-ID": "user1"  # This can be a unique identifier for the user, or any user-specific information you need
-}
+def verify_ecdsa_signature(signature, data, pk):
+    try:
+        pk.verify(signature, data)  # Encode data as bytes
+        return True  # Signature is valid
+    except ecdsa.BadSignatureError:
+        return False  # Signature is invalid
 
-# Send the POST request to the server with JSON data and proper headers
-response = requests.post(url, json=data, headers=headers)
 
-# Print the response
-print(response.status_code)
-print(response.json())
+@app2.middleware("http")
+async def verify_signature(request: Request, call_next):
+    signature = request.headers.get("X-Signature")
+    user_id = request.headers.get("X-User-ID")
+
+    if not signature or not user_id:
+        raise HTTPException(status_code=401, detail="Missing X-Signature or X-User-ID header")
+
+    with open("keys/public_key.pem", "rb") as f:
+        pk = ecdsa.VerifyingKey.from_pem(f.read().decode('utf-8'))
+
+    data = await request.body()
+
+    signature = signature.encode()
+
+    signature = base64.b64decode(signature)
+
+    # Verify the signature using the ECDSA public key
+    if not verify_ecdsa_signature(signature, data, pk):
+        raise HTTPException(status_code=401, detail="Invalid signature")
+
+    response = await call_next(request)
+    return response
+
+
+@app2.get("/")
+async def root():
+    return {"message": "Secure Hello World"}
+
+
+@app2.post("/credits")
+async def credits(request: Request):
+    return {
+        "name": "Oleg",
+        "surname": "Ivanovich",
+        "passport": "0316480050",
+        "snils": "123123123",
+        "credit_score": "973",
+        "ammount": "6000000",
+        "university": "Kuban State",
+        "INN": "123123"
+    }
+
+
+@app2.get("/get_client_ip/")
+def get_client_ip(request: Request):
+    client_ip = request.client.host
+    return {"client_ip": client_ip}
+
+
+@app2.get("/get_ip_v6/")
+def get_ip_v6(request: Request):
+    client_ip = request.client.host
+    return {"client_ip": client_ip}
