@@ -215,12 +215,12 @@ async def all_address():
 async def all_address():
     return [
         {
-            id: 1,
+            "id": 1,
             "title": "Крайний срок подачи заявлений",
             "date": "2023-08-15",
         },
         {
-            id: 2,
+            "id": 2,
             "title": "День ориентации",
             "date": "2023-09-01",
         },
@@ -348,3 +348,84 @@ async def all_address():
             "specialties": ["Литература", "История", "Иностранные языки"],
         },
     ]
+
+
+@router.get("/questions_2")
+async def all_address():
+    return [
+        {
+            "question": "Какие предметы вам интересны и приносят удовольствие?",
+            "options": ["Математика", "Физика", "Химия", "Биология", "Информатика"],
+        },
+        {
+            "question": "Какой тип задач вам более интересен?",
+            "options": ["Аналитические", "Экспериментальные", "Творческие"],
+        },
+        {
+            "question": "Какую область вы бы хотели изучать в будущем?",
+            "options": ["Точные науки", "Естественные науки", "Гуманитарные науки"],
+        },
+    ]
+
+
+@router.get("/specialtyCards")
+async def all_address():
+    return [
+
+    {
+      "specialty": "Физика",
+      "image": "https://ug.ru/wp-content/uploads/2021/04/vuzy.jpg",
+      "averageCost": "1200",
+      "passingScore": "85",
+      "budgetType": "договор",
+    },
+    {
+      "specialty": "Инноватика",
+      "image": "https://ug.ru/wp-content/uploads/2021/04/vuzy.jpg",
+      "averageCost": "1100",
+      "passingScore": "75",
+      "budgetType": "договор",
+    },
+    {
+      "specialty": "Химик",
+      "image": "https://ug.ru/wp-content/uploads/2021/04/vuzy.jpg",
+      "averageCost": "1050",
+      "passingScore": "77",
+      "budgetType": "бюджет",
+    },
+    {
+      "specialty": "Биолог",
+      "image": "https://cdn-edge.kwork.ru/pics/t3/32/11196580-1609130659.jpg",
+      "averageCost": "950",
+      "passingScore": "70",
+      "budgetType": "договор",
+    },
+    {
+      "specialty": "Информатика",
+      "image": "https://cdn-edge.kwork.ru/pics/t3/32/11196580-1609130659.jpg",
+      "averageCost": "1300",
+      "passingScore": "88",
+      "budgetType": "бюджет",
+    },
+    {
+      "specialty": "Литература",
+      "image": "https://cityopen.ru/wp-content/uploads/2023/07/studenty-na-kanikulah-stali-rezhe-iskat-rabotu-i-bolshe-uchitsya.jpg",
+      "averageCost": "900",
+      "passingScore": "65",
+      "budgetType": "договор",
+    },
+    {
+      "specialty": "История",
+      "image": "https://avatars.mds.yandex.net/i?id=2a000001898ccd2a54ef7f0fece8d90d5f2c-1095124-fast-images&n=13",
+      "averageCost": "950",
+      "passingScore": "70",
+      "budgetType": "бюджет",
+    },
+    {
+      "specialty": "Иностранные языки",
+      "image": "https://avatars.dzeninfra.ru/get-zen_doc/9736637/pub_64a69b6a5a90544259d49a3a_64a69b822e8e4c7f240baf31/scale_1200",
+      "averageCost": "1000",
+      "passingScore": "75",
+      "budgetType": "договор",
+    },
+  ]
