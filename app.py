@@ -30,6 +30,14 @@ app.include_router(question_router)
 app.include_router(front_router)
 
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=['*'],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 app2.add_middleware(
     CORSMiddleware,
     allow_origins=['*'],
