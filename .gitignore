@@ -127,7 +127,7 @@ dmypy.json
 .wakatime-project
 
 #notes
-notes
+notes.py
 
 #fill_db
 fill_db

@@ -37,12 +37,9 @@ app.include_router(answer_router)
 app.include_router(question_router)
 app.include_router(front_router)
 
-
-
-
 app2.add_middleware(
     CORSMiddleware,
-    allow_origins=['*'],
+    allow_origins=['localhost, 194.31.174.209'],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

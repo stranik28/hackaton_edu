@@ -1,6 +1,4 @@
 import requests
-import random
-import datetime
 
-base_url = "localhost:9999"
-
+request = requests.get("http://nova-hub.ru:9999/moc/cards_1")
+print(request.json())
