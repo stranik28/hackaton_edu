@@ -4,7 +4,8 @@ import requests
 import random
 import datetime
 
-base_url = "http://localhost:9999"  # Replace with your API base URL
+base_url = "http://nova-hub.ru:9999"  # Replace with your API base URL
+
 
 
 def create_university(name: int, photos: list[str], address: list[int], speciality: list[int], phone: str, description: str):
@@ -138,7 +139,7 @@ def add_users(n):
         
 def add_universities():
     for university in universities:
-        create_speciality(**university)
+        create_university(**university)
         
         
 def add_specialities():

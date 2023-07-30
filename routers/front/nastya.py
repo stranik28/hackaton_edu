@@ -197,13 +197,13 @@ async def all_address():
 async def all_address():
     return [
         {
-            id: 1,
+            "id": 1,
             "title": "Важное объявление",
             "date": "2023-07-28",
             "content": "Зачислены первые студенты в вузы...",
         },
         {
-            id: 2,
+            "id": 2,
             "title": "Новая программа стипендий",
             "date": "2023-07-25",
             "content": "Для многодетных семей будет...",
@@ -215,12 +215,12 @@ async def all_address():
 async def all_address():
     return [
         {
-            id: 1,
+            "id": 1,
             "title": "Крайний срок подачи заявлений",
             "date": "2023-08-15",
         },
         {
-            id: 2,
+            "id": 2,
             "title": "День ориентации",
             "date": "2023-09-01",
         },
@@ -287,6 +287,11 @@ async def all_address():
     ]
 
 
+@router.get("/")
+async def all_address():
+    return []
+
+
 @router.get("/specialities_4")
 async def all_address():
     return [
@@ -301,7 +306,6 @@ async def all_address():
             "requiredSubjects": ["Математика", "Иностранный язык", "Информатика"],
             "minimumScore": 150,
             "image": "http://ulpravda.ru/pictures/news/big/119060_big.jpg"
-
         },
         {
             "title": "Electrical Engineering",
@@ -314,3 +318,114 @@ async def all_address():
             "minimumScore": 180,
         },
     ]
+
+
+@router.get("/careerDirections")
+async def all_address():
+    return [
+        {
+            "direction": "Точные науки",
+            "description":
+                "Точные науки — это научные дисциплины, основанные на строгой логике и математических методах. Они занимаются изучением количественных закономерностей и развивают аналитическое мышление. Сюда входят математика и физика, которые являются основой для многих технологий и научных исследований.",
+            "specialties": ["Инноватика", "Физика", "Математика"],
+        },
+        {
+            "direction": "Естественные науки",
+            "description":
+                "Естественные науки изучают природные явления и процессы, которые происходят в живой и неживой природе. Они помогают понять законы природы, функционирование организмов и экосистем, а также разрабатывать новые лекарства и технологии. В эту область входят химия и биология.",
+            "specialties": ["Химик", "Биолог"],
+        },
+        {
+            "direction": "Информатика",
+            "description":
+                "Информатика — это наука о методах и процессах обработки информации с помощью компьютеров. Она занимается разработкой программного обеспечения, искусственным интеллектом, базами данных и другими технологиями. Информатика имеет множество применений в различных сферах жизни и бизнеса.",
+            "specialties": ["Информатика"],
+        },
+        {
+            "direction": "Гуманитарные науки",
+            "description":
+                "Гуманитарные науки изучают человека, его культуру, историю и общество. Они помогают понять различные аспекты человеческой деятельности, искусства, языка и общественных отношений. Гуманитарные науки играют важную роль в формировании культурного наследия и понимании нашего прошлого и настоящего.",
+            "specialties": ["Литература", "История", "Иностранные языки"],
+        },
+    ]
+
+
+@router.get("/questions_2")
+async def all_address():
+    return [
+        {
+            "question": "Какие предметы вам интересны и приносят удовольствие?",
+            "options": ["Математика", "Физика", "Химия", "Биология", "Информатика"],
+        },
+        {
+            "question": "Какой тип задач вам более интересен?",
+            "options": ["Аналитические", "Экспериментальные", "Творческие"],
+        },
+        {
+            "question": "Какую область вы бы хотели изучать в будущем?",
+            "options": ["Точные науки", "Естественные науки", "Гуманитарные науки"],
+        },
+    ]
+
+
+@router.get("/specialtyCards")
+async def all_address():
+    return [
+
+    {
+      "specialty": "Физика",
+      "image": "https://ug.ru/wp-content/uploads/2021/04/vuzy.jpg",
+      "averageCost": "1200",
+      "passingScore": "85",
+      "budgetType": "договор",
+    },
+    {
+      "specialty": "Инноватика",
+      "image": "https://ug.ru/wp-content/uploads/2021/04/vuzy.jpg",
+      "averageCost": "1100",
+      "passingScore": "75",
+      "budgetType": "договор",
+    },
+    {
+      "specialty": "Химик",
+      "image": "https://ug.ru/wp-content/uploads/2021/04/vuzy.jpg",
+      "averageCost": "1050",
+      "passingScore": "77",
+      "budgetType": "бюджет",
+    },
+    {
+      "specialty": "Биолог",
+      "image": "https://cdn-edge.kwork.ru/pics/t3/32/11196580-1609130659.jpg",
+      "averageCost": "950",
+      "passingScore": "70",
+      "budgetType": "договор",
+    },
+    {
+      "specialty": "Информатика",
+      "image": "https://cdn-edge.kwork.ru/pics/t3/32/11196580-1609130659.jpg",
+      "averageCost": "1300",
+      "passingScore": "88",
+      "budgetType": "бюджет",
+    },
+    {
+      "specialty": "Литература",
+      "image": "https://cityopen.ru/wp-content/uploads/2023/07/studenty-na-kanikulah-stali-rezhe-iskat-rabotu-i-bolshe-uchitsya.jpg",
+      "averageCost": "900",
+      "passingScore": "65",
+      "budgetType": "договор",
+    },
+    {
+      "specialty": "История",
+      "image": "https://avatars.mds.yandex.net/i?id=2a000001898ccd2a54ef7f0fece8d90d5f2c-1095124-fast-images&n=13",
+      "averageCost": "950",
+      "passingScore": "70",
+      "budgetType": "бюджет",
+    },
+    {
+      "specialty": "Иностранные языки",
+      "image": "https://avatars.dzeninfra.ru/get-zen_doc/9736637/pub_64a69b6a5a90544259d49a3a_64a69b822e8e4c7f240baf31/scale_1200",
+      "averageCost": "1000",
+      "passingScore": "75",
+      "budgetType": "договор",
+    },
+  ]

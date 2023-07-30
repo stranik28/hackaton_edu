@@ -55,6 +55,7 @@ async def landing(
     print(landing_spec)
     return ResponseSpecialityLandingFactory.from_models(landing_spec)
 
+
 @router.get('/culculator')
 async def calculator():
     return "In progress"
