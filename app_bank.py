@@ -52,7 +52,7 @@ def get_client_ip(request: Request):
     return {"client_ip": client_ip}
 
 
-@app.get("/get_ip_v6/")
+@app2.get("/get_ip_v6/")
 def get_ip_v6(request: Request):
     client_ip = request.client.host
     return {"client_ip": client_ip}
